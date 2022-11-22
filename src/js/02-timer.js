@@ -6,18 +6,20 @@ const btn = document.querySelector('button');
 const nums = document.querySelectorAll('.label');
 const names = document.querySelectorAll('.value');
 
+btn.disabled = true;
+
 const options = {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    if (selectedDates[0] <= Date.now()) {
-      btn.disabled = true;
-      window.alert('Please choose a date in the future');
+    if (selectedDates[0] > Date.now()) {
+      btn.disabled = false;
       return;
     }
-    btn.disabled = false;
+    btn.disabled = true;
+    window.alert('Please choose a date in the future');
   },
 }
 
